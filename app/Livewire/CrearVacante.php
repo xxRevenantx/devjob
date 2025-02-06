@@ -31,6 +31,7 @@ class CrearVacante extends Component
     public $imagen;
 
 
+
     protected $rules = [
         'titulo' => 'required|string|max:255',
         'salario' => 'required',
@@ -38,7 +39,9 @@ class CrearVacante extends Component
         'empresa' => 'required|string|max:255',
         'ultimo_dia' => 'required|date',
         'descripcion' => 'required|string|max:255',
-        'imagen' => 'required|max:2048'
+        'imagen' => 'required|max:2048',
+
+
 
 
     ];
@@ -59,7 +62,9 @@ class CrearVacante extends Component
         'descripcion.max' => 'El campo descripción no debe exceder los 255 caracteres',
         'imagen.required' => 'El campo imagen es obligatorio',
         'imagen.image' => 'El campo imagen debe ser una imagen',
-        'imagen.max' => 'El campo imagen no debe exceder los 2048 kilobytes'
+        'imagen.max' => 'El campo imagen no debe exceder los 2048 kilobytes',
+
+
 
     ];
 
@@ -77,8 +82,8 @@ class CrearVacante extends Component
         $datos = $this->validate();
 
         // $imagen = Storage::putFile('public/vacantes', new File($this->imagen[0]['path']));
-        $imagen = $this->imagen->store('public/vacantes');
-        $datos["imagen"] = str_replace('public/vacantes/', '', $imagen);
+        $imagen = $this->imagen->store('vacantes');
+        $datos["imagen"] = str_replace('vacantes/', '', $imagen);
 
 
         // Se crea la vacante

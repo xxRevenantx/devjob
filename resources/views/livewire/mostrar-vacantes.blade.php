@@ -28,14 +28,14 @@
                         </svg>
                     EDITAR
                 </a>
-                <a href="#" class="bg-red-600 py-2 px-4 rounded-lg text-white font-bold uppercase text-center">
+                <button  wire:click="$dispatch('eliminarVacante', {{ $vacante->id }} )" class="bg-red-600 py-2 px-4 rounded-lg text-white font-bold uppercase text-center">
 
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block text-white" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
                         <path d="M 10 2 L 9 3 L 4 3 L 4 5 L 5 5 L 5 20 C 5 20.522222 5.1913289 21.05461 5.5683594 21.431641 C 5.9453899 21.808671 6.4777778 22 7 22 L 17 22 C 17.522222 22 18.05461 21.808671 18.431641 21.431641 C 18.808671 21.05461 19 20.522222 19 20 L 19 5 L 20 5 L 20 3 L 15 3 L 14 2 L 10 2 z M 7 5 L 17 5 L 17 20 L 7 20 L 7 5 z M 9 7 L 9 18 L 11 18 L 11 7 L 9 7 z M 13 7 L 13 18 L 15 18 L 15 7 L 13 7 z"></path>
                         </svg>
 
                     ELIMINAR
-                </a>
+                    </button>
             </div>
 
 
@@ -58,7 +58,44 @@
         {{ $vacantes->links() }}
     </div>
 
-
-
-
 </div>
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+document.addEventListener('livewire:init', () => {
+       Livewire.on('eliminarVacante', (event) => {
+
+            Swal.fire({
+        title: "¿Quieres eliminar esta vacante?",
+        text: "Esto no se puede revertir",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Sí, eliminar!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+
+            Livewire.emitTo('mostrar-vacantes', 'eliminarVacante', event);
+
+            // Swal.fire({
+            // title: "Ok!",
+            // text: "Vacante Eliminada correctamete.",
+            // icon: "success"
+            // });
+
+
+        }
+        });
+       });
+    });
+
+
+
+</script>
+
+@endpush
