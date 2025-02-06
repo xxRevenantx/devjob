@@ -6,7 +6,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 {{-- <x-welcome /> --}}
                 @if (session()->has('message'))
-                <x-alert color="green">{{ session('message') }}</x-alert>
+                <x-alert-success color="green">{{ session('message') }}</x-alert-success>
              @endif
 
 

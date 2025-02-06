@@ -20,4 +20,10 @@ class Vacante extends Model
     ];
 
 
+    public function getRouteKeyName()
+    {
+        return  'titulo';
+    }
+
+
 }
