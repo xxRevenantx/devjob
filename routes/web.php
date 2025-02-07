@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,4 @@ Route::middleware([
 });
 
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');
+Route::get('/notificaciones', NotificacionController::class)->name('notificaciones');

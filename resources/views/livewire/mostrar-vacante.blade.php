@@ -42,4 +42,13 @@
 @endguest
 
 
+{{-- Solo se mostrará a los desarrolladores --}}
+
+@cannot('create', App\Models\Vacante::class)
+
+<livewire:postular-vacante :vacante="$vacante" />
+@endcannot
+
+
+
 </div>
