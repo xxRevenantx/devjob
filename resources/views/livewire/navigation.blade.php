@@ -5,6 +5,8 @@
                 <a href="/" class="shrink-0">
                         <h1 class="text-white text-3xl">Dev<span class="font-bold">Jobs</span></h1>
                 </a>
+
+                @auth()
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
@@ -13,6 +15,11 @@
 
                     </div>
                 </div>
+
+
+                @endauth
+
+
             </div>
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
@@ -70,11 +77,15 @@
                         </x-dropdown>
 
                         @else
+
+
                         <x-dropdown align="right" width="48">
+
                             <x-slot name="trigger">
-                              <button class="text-gray-300">
-                                <i class="fa-regular fa-circle-user text-3xl"></i>
+                              <button class="text-gray-300 text-4xl">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="9" r="3"/><circle cx="12" cy="12" r="10"/><path strokeLinecap="round" d="M17.97 20c-.16-2.892-1.045-5-5.97-5s-5.81 2.108-5.97 5"/></g></svg>
                               </button>
+
                             </x-slot>
 
                             <x-slot name="content">
@@ -123,6 +134,9 @@
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+
+        @auth
+
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('vacantes.index') }}" :active="request()->routeIs('vacantes.index')">
                 Vacantes
@@ -133,14 +147,13 @@
             </x-responsive-nav-link>
 
 
-
-
         </div>
+        @endauth
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
 
-            @auth
+            @auth()
                 <div class="flex items-center px-4">
                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                         <div class="shrink-0 me-3">
@@ -178,12 +191,15 @@
 
             @else
 
+
             <x-dropdown-link class="text-white" href="{{ route('login') }}">
                 Iniciar Sesión
             </x-dropdown-link>
             <x-dropdown-link class="text-white" href="{{ route('register') }}">
                 Registrarse
             </x-dropdown-link>
+
+
             @endauth
 
 

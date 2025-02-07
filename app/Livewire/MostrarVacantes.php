@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Vacante;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class MostrarVacantes extends Component
@@ -10,10 +11,21 @@ class MostrarVacantes extends Component
 
 
 
-    // public function eliminarVacante($vacante_id)
-    // {
-    //         dd($vacante_id);
-    // }
+    public function eliminarVacante($vacante_id)
+    {
+        $vacante = Vacante::find($vacante_id);
+
+
+
+        if ($vacante->imagen) {
+            Storage::delete("vacantes/" . $vacante->imagen);
+        }
+
+        $vacante->delete();
+
+        // session()->flash('message', 'La vacante se eliminó correctamente');
+
+    }
 
 
     public function render()

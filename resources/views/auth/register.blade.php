@@ -23,7 +23,7 @@
                 <x-label for="rol" value="{{ __('Rol') }}" />
                 <x-select id="rol" class="block mt-1 w-full" :value="old('rol')" name="rol" required>
                     <option value="0">-- Seleccione --</option>
-                    <option value="1">Administrador</option>
+                    <option value="1">Desarrollador</option>
                     <option value="2">Reclutador</option>
                 </x-select>
 

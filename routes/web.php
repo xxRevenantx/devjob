@@ -13,10 +13,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-
     Route::get('/', function () {
         return redirect()->route('vacantes.index');
     });
 
-    Route::resource('/vacantes', VacanteController::class)->names('vacantes');
+    Route::get('/vacantes',[VacanteController::class, 'index'])->name('vacantes.index');
+    Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
+    Route::get('/vacantes/{vacante}/edit', [VacanteController::class, 'edit'])->name('vacantes.edit');
 });
+
+Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');

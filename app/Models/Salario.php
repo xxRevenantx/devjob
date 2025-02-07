@@ -12,4 +12,11 @@ class Salario extends Model
     protected $table = 'salarios';
 
     protected $fillable = ['salario'];
+
+
+    public function salarios()
+    {
+        return $this->hasMany(Vacante::class);
+
+    }
 }

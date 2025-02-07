@@ -8,4 +8,13 @@ class Categoria extends Model
 {
     protected $table = 'categorias';
     protected $fillable = ['categoria'];
+
+
+public function categorias()
+    {
+        return $this->hasMany(Vacante::class);
+    }
+
+
 }
+

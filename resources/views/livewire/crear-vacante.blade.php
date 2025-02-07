@@ -1,7 +1,5 @@
 <div  class="md:w-1/2" >
 
-
-
 <div >
 
     <form  wire:submit.prevent="save" class="space-y-5" enctype="multipart/form-data">

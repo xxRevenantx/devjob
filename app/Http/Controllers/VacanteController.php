@@ -13,6 +13,9 @@ class VacanteController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
+
+        Gate::authorize('viewAny', Vacante::class);
+
         return view('vacantes.index');
     }
 
@@ -21,6 +24,7 @@ class VacanteController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Vacante::class);
         return view('vacantes.create');
     }
 
@@ -35,9 +39,9 @@ class VacanteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Vacante $vacante)
     {
-        //
+        return view('vacantes.show', compact('vacante'));
     }
 
     /**
