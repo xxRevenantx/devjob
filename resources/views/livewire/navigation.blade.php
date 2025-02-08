@@ -7,6 +7,9 @@
                 </a>
 
                 @auth()
+
+                {{-- Desde la policy, si es reclutador, puede crear --}}
+                @can('create', App\Models\Vacante::class)
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
@@ -15,6 +18,8 @@
 
                     </div>
                 </div>
+                @endcan
+
 
 
                 @endauth
@@ -29,9 +34,7 @@
 
                         @auth()
 
-                            @if (auth()->user()->rol === 2)
-
-
+                        @can('create', App\Models\Vacante::class)
 
                                 <a href="{{ route('notificaciones') }}"  class="mr-4 relative inline-flex items-center p-3 text-sm font-medium text-center text-white  rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props} key={key}><path fill="currentColor" d="M4 8a8 8 0 1 1 16 0v4.697l2 3V20h-5.611a4.502 4.502 0 0 1-8.777 0H2v-4.303l2-3zm5.708 12a2.5 2.5 0 0 0 4.584 0zM12 2a6 6 0 0 0-6 6v5.303l-2 3V18h16v-1.697l-2-3V8a6 6 0 0 0-6-6"/></svg>
@@ -43,11 +46,7 @@
                                         </div>
                                      </a>
 
-
-
-
-
-                            @endif
+                         @endcan
 
                          <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
@@ -156,7 +155,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
 
         @auth
-
+        @can('create', App\Models\Vacante::class)
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('vacantes.index') }}" :active="request()->routeIs('vacantes.index')">
                 Vacantes
@@ -166,29 +165,21 @@
                 Crear Vacante
             </x-responsive-nav-link>
 
-            @if (auth()->user()->rol === 2)
 
 
-            <x-responsive-nav-link href="{{ route('notificaciones') }}" :active="request()->routeIs('notificaciones')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props} key={key}><path fill="currentColor" d="M4 8a8 8 0 1 1 16 0v4.697l2 3V20h-5.611a4.502 4.502 0 0 1-8.777 0H2v-4.303l2-3zm5.708 12a2.5 2.5 0 0 0 4.584 0zM12 2a6 6 0 0 0-6 6v5.303l-2 3V18h16v-1.697l-2-3V8a6 6 0 0 0-6-6"/></svg>
 
-                <span class="sr-only">Notifications</span>
-                  <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white  {{Auth::user()->unreadNotifications->count() === 0 ?  "bg-red-500" : "bg-indigo-500" }} border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+            <x-responsive-nav-link  href="{{ route('notificaciones') }}" :active="request()->routeIs('notificaciones')">
+                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props} key={key}><path fill="currentColor" d="M4 8a8 8 0 1 1 16 0v4.697l2 3V20h-5.611a4.502 4.502 0 0 1-8.777 0H2v-4.303l2-3zm5.708 12a2.5 2.5 0 0 0 4.584 0zM12 2a6 6 0 0 0-6 6v5.303l-2 3V18h16v-1.697l-2-3V8a6 6 0 0 0-6-6"/></svg> --}}
+
+
+                  <div class="inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white  {{Auth::user()->unreadNotifications->count() === 0 ?  "bg-red-500" : "bg-indigo-500" }} border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
                      {{Auth::user()->unreadNotifications->count()}}
 
                     </div>
+                       @choice('Notificación|Notificaciones', Auth::user()->unreadNotifications->count())
             </x-responsive-nav-link>
-            {{-- <a href="{{ route('notificaciones') }}"  class="mr-4 relative inline-flex items-center p-3 text-sm font-medium text-center text-white  rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-
-                 </a> --}}
-
-
-
-
-
-        @endif
-
         </div>
+        @endcan
         @endauth
 
         <!-- Responsive Settings Options -->

@@ -18,7 +18,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row mt-5 md:mt-0 gap-3 items-strech">
-                <a href="#" class="bg-slate-800 py-2 px-4 rounded-lg text-white font-bold uppercase text-center">
+                <a href="{{ route('canditados.index') }}" class="bg-slate-800 py-2 px-4 rounded-lg text-white font-bold uppercase text-center">
 
                     CANDIDATOS
                 </a>
