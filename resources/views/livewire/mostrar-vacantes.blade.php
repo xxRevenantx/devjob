@@ -18,9 +18,12 @@
             </div>
 
             <div class="flex flex-col md:flex-row mt-5 md:mt-0 gap-3 items-strech">
-                <a href="{{ route('canditados.index') }}" class="bg-slate-800 py-2 px-4 rounded-lg text-white font-bold uppercase text-center">
-
+                <a href="{{ route('candidatos.index', $vacante) }}" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-gray-800  rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     CANDIDATOS
+                    <span class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                        {{ $vacante->candidatos->count() }}
+                    </span>
+
                 </a>
                 <a href="{{ route('vacantes.edit', $vacante) }}" class="bg-blue-800 py-2 px-4 rounded-lg text-white font-bold uppercase text-center">
                     <svg class="w-5 h-5 inline-block text-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">

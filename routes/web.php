@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 // CON LA POLICY NO ESTÁS AUTORIZADO PARA VER UN CONTENIDO
 // EL MIDDLEWARE TRATA DE REDIRIGIRTE A OTRA TURA
 Route::get('/', function () {
-    return view('welcome');
-    // return "Hola mundo";
+    // return view('welcome');
+    return view('dashboard');
 })->name('home');
 
 Route::get('/dashboard',[VacanteController::class, 'index'])->middleware('auth','verified','rol.reclutador')->name('vacantes.index');
@@ -31,7 +31,7 @@ Route::get('/vacantes/create', [VacanteController::class, 'create'])->middleware
 Route::get('/vacantes/{vacante}/edit', [VacanteController::class, 'edit'])->middleware('auth','verified')->name('vacantes.edit');
 
 
-Route::get('/candidatos/{vacante}', [CandidatoController::class, 'index'])->middleware('auth','verified', 'rol.reclutador')->name('canditados.index');
+Route::get('/candidatos/{vacante}', [CandidatoController::class, 'index'])->middleware('auth','verified', 'rol.reclutador')->name('candidatos.index');
 
 
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');

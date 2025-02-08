@@ -26,7 +26,7 @@
 
 
                         <div>
-                            <a href="{{ route('vacantes.show', $notificacion->data['id_vacante']) }}"
+                            <a href="{{ route('candidatos.index', $notificacion->data['id_vacante']) }}"
                                 class="bg-indigo-500 text-white font-bold py-2 px-4  inline-block rounded-lg">VER CANDIDATOS</a>
 
                         </div>

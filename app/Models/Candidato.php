@@ -19,4 +19,10 @@ class Candidato extends Model
     {
         return $this->belongsTo(Vacante::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
