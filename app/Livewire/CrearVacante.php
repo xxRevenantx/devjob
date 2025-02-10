@@ -38,7 +38,7 @@ class CrearVacante extends Component
         'categoria' => 'required',
         'empresa' => 'required|string|max:255',
         'ultimo_dia' => 'required|date',
-        'descripcion' => 'required|string|max:255',
+        'descripcion' => 'required|string',
         'imagen' => 'required|max:2048',
 
 

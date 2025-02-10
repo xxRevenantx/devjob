@@ -43,12 +43,13 @@
 
 
 {{-- Solo se mostrará a los desarrolladores --}}
-
+@auth
+  
 @cannot('create', App\Models\Vacante::class)
-
 <livewire:postular-vacante :vacante="$vacante" />
 @endcannot
 
+@endauth
 
 
 </div>

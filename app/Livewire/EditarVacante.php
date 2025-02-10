@@ -30,7 +30,7 @@ class EditarVacante extends Component
         'categoria' => 'required|integer|min:1',
         'empresa' => 'required|string|max:255',
         'ultimo_dia' => 'required|date',
-        'descripcion' => 'required|max:255',
+        'descripcion' => 'required',
         'imagen' => 'required|max:2048',
         'imagen_nueva' => 'nullable|image|max:2048'
 

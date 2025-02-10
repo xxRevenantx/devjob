@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 // CON LA POLICY NO ESTÁS AUTORIZADO PARA VER UN CONTENIDO
 // EL MIDDLEWARE TRATA DE REDIRIGIRTE A OTRA TURA
-Route::get('/', function () {
-    // return view('welcome');
-    return view('dashboard');
-})->name('home');
+Route::get('/', HomeController::class )->name('home');
 
 Route::get('/dashboard',[VacanteController::class, 'index'])->middleware('auth','verified','rol.reclutador')->name('vacantes.index');
 

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Vacante | {{ $vacante->titulo }} |   <span class="bg-green-700 font-bold p-1 text-white rounded-lg">{{ Auth::user()->rol === 1 ? 'Desarrollador' : 'Reclutador' }}</span>
+            Vacante | {{ $vacante->titulo }} | 
 
         </h2>
     </x-slot>
