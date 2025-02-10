@@ -38,7 +38,7 @@ class CrearVacante extends Component
         'categoria' => 'required',
         'empresa' => 'required|string|max:255',
         'ultimo_dia' => 'required|date',
-        'descripcion' => 'required|string',
+        'descripcion' => 'required',
         'imagen' => 'required|max:2048',
 
 
@@ -58,7 +58,6 @@ class CrearVacante extends Component
         'ultimo_dia.required' => 'El campo último día es obligatorio',
         'ultimo_dia.date' => 'El campo último día debe ser una fecha',
         'descripcion.required' => 'El campo descripción es obligatorio',
-        'descripcion.string' => 'El campo descripción debe ser un texto',
         'descripcion.max' => 'El campo descripción no debe exceder los 255 caracteres',
         'imagen.required' => 'El campo imagen es obligatorio',
         'imagen.image' => 'El campo imagen debe ser una imagen',
@@ -71,10 +70,10 @@ class CrearVacante extends Component
 
 
 
-    public function updated($propertyName) // ACTUALIZAR EN TIEMPO REAL
-    {
-        $this->validateOnly($propertyName);
-    }
+    // public function updated($propertyName) // ACTUALIZAR EN TIEMPO REAL
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
 
     public function save(){
         // Se validan los campos

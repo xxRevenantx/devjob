@@ -7,7 +7,7 @@
             <div>
             <x-label for="titulo">Título de la vacante
             </x-label>
-                <x-input type="text"  wire:model.live.debounce.500ms="titulo" placeholder="Título Vacante" class="block mt-1 w-full" />
+                <x-input type="text"  wire:model="titulo" placeholder="Título Vacante" class="block mt-1 w-full" />
 
             @error('titulo')
                 <x-alertd  color="red" >{{ $message }}</x-alertd>
@@ -17,7 +17,7 @@
 
             <div>
             <x-label for="salario">Salario Mensual</x-label>
-                <x-select  wire:model.live.debounce.500ms="salario" class="block mt-1 w-full">
+                <x-select  wire:model="salario" class="block mt-1 w-full">
                     <option value="0">-- Seleccione --</option>
                     @foreach ($salarios as $salario )
                         <option value="{{ $salario->id }}">{{ $salario->salario }}</option>
@@ -32,7 +32,7 @@
 
             <div>
                 <x-label for="categoria">Categoría</x-label>
-                <x-select wire:model.live.debounce.500ms="categoria" name="categoria" class="block mt-1 w-full">
+                <x-select wire:model="categoria" name="categoria" class="block mt-1 w-full">
                     <option value="0">-- Seleccione --</option>
                     @foreach ($categorias as $categoria )
                         <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
@@ -47,7 +47,7 @@
 
             <div>
                 <x-label for="empresa">Nombre de la Empresa</x-label>
-                <x-input type="text" wire:model.live.debounce.500ms="empresa" name="empresa" placeholder="Nombre de la Empresa" class="block mt-1 w-full" />
+                <x-input type="text" wire:model="empresa" name="empresa" placeholder="Nombre de la Empresa" class="block mt-1 w-full" />
                 @error('empresa')
              <x-alertd  color="red" >{{ $message }}</x-alertd>
                 @enderror
@@ -55,7 +55,7 @@
 
             <div>
                 <x-label for="ultimo_dia">Último Día para Postularse</x-label>
-                <x-input type="date" wire:model.live.debounce.500ms="ultimo_dia" name="ultimo_dia" class="block mt-1 w-full"  />
+                <x-input type="date" wire:model="ultimo_dia" name="ultimo_dia" class="block mt-1 w-full"  />
                 @error('ultimo_dia')
                        <x-alertd  color="red" >{{ $message }}</x-alertd>
 
@@ -63,9 +63,9 @@
             </div>
 
 
-            <div>
+            <div wire:ignore>
                 <x-label for="descripcion">Descripción del Puesto</x-label>
-                <textarea  wire:model.live.debounce.500ms="descripcion" placeholder="Descripción del Puesto" class="block mt-1 w-full"></textarea>
+                <textarea  wire:model="descripcion" id="descripcion" placeholder="Descripción del Puesto" class="block mt-1 w-full"></textarea>
 
                 @error('descripcion')
                        <x-alertd  color="red" >{{ $message }}</x-alertd>
@@ -106,12 +106,20 @@
     <script src="https://cdn.tiny.cloud/1/hcxfrw0pcqi9p4kan39syjk366xqc5icvijln2ofw6a0l43g/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
-         tinymce.init({
-        selector: 'textarea',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-      });
-    </script>
+        tinymce.init({
+      selector: '#descripcion',
+      plugins: 'code table lists',
+      forced_root_block: false,
+      setup: function (editor) {
+          editor.on('init change', function () {
+              editor.save();
+          });
+          editor.on('change', function (e) {
+              @this.set('descripcion', editor.getContent());
+          });
+      }
+  });
+  </script>
 
 @endpush
 

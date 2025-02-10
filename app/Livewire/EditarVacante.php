@@ -51,8 +51,6 @@ class EditarVacante extends Component
         'ultimo_dia.required' => 'El campo último día es obligatorio',
         'ultimo_dia.date' => 'El campo último día debe ser una fecha',
         'descripcion.required' => 'El campo descripción es obligatorio',
-        'descripcion.string' => 'El campo descripción debe ser un texto',
-        'descripcion.max' => 'El campo descripción no debe exceder los 255 caracteres',
         'imagen.required' => 'El campo imagen es obligatorio',
         'imagen.image' => 'El campo imagen debe ser una imagen',
         'imagen.max' => 'El campo imagen no debe exceder los 2048 kilobytes'
@@ -60,10 +58,10 @@ class EditarVacante extends Component
     ];
 
 
-    public function updated($propertyName) // ACTUALIZAR EN TIEMPO REAL
-    {
-        $this->validateOnly($propertyName);
-    }
+    // public function updated($propertyName) // ACTUALIZAR EN TIEMPO REAL
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
 
 
     public function mount(Vacante $vacante)
